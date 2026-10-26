@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: meu-ciclo
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /data/ciclo.db
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+    disk:
+      name: dados
+      mountPath: /data
+      sizeGB: 1
